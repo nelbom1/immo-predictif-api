@@ -18,7 +18,12 @@ dados_imobiliarios = {
         "Paris": {"preco_m2": 11000, "tendencia": "+5% ao ano"},
         "Marselha": {"preco_m2": 3500, "tendencia": "+3.8% ao ano"}
     }
-}
+}import uvicorn
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=10000)
+
+
 
 @app.get("/precos")
 def obter_precos(pais: str, cidade: str):
@@ -48,7 +53,3 @@ def comparar_precos(pais1: str, cidade1: str, pais2: str, cidade2: str):
         }
     return {"erro": "Uma ou ambas as cidades não foram encontradas"}
 
-# Comando para rodar o servidor localmente
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
